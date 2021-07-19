@@ -91,9 +91,8 @@ Gateways is a simple React/Redux - NodeJs/MongoDb project that handles saving ga
   cd..
   npm start
   ```
-7. Run Jest tests by  running
+7. Run Jest tests from root folder by running
   ```sh
-  cd..
   npm run test
   ```
 
