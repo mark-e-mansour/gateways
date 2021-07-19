@@ -25,10 +25,10 @@ jobs:
       with:
         node-version: 7
         cache: 'npm'
-    - run: npm ci
+    - run: npm i
     - run: cd client
-    - run: npm ci
+    - run: npm i
     - run: cd ..
-    - run: npm test
+    - run: npm run test
     - run: cd client
     - run: npm run build
