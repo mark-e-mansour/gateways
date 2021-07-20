@@ -97,7 +97,7 @@ render() {
   }
 
   return (
-    <div className="new-question">
+    <div className="new-gateway">
       <div className="col-md-12 mt-3 mb-3">
         <h3 className='text-center'>Create new gateway</h3>
       </div>

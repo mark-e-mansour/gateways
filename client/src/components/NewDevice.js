@@ -91,7 +91,7 @@ class NewDevice extends Component {
     }
 
     return (
-      <div className="new-question">
+      <div className="new-device">
         <Modal
           size="lg"
           show={true}
