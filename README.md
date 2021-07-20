@@ -126,6 +126,7 @@ Project Link: [https://github.com/mark-e-mansour/gateways](https://github.com/ma
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
+[![Node.js CI](https://github.com/mark-e-mansour/gateways/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/mark-e-mansour/gateways/actions/workflows/node.js.yml)
 [forks-shield]: https://img.shields.io/github/forks/mark-e-mansour/gateways.svg?style=for-the-badge
 [forks-url]: https://github.com/mark-e-mansour/gateways/network/members
 [stars-shield]: https://img.shields.io/github/stars/mark-e-mansour/gateways.svg?style=for-the-badge
