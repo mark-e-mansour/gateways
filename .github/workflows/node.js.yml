@@ -27,7 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
-    - run: cd client
-    - run: npm i
-    - run: npm run test --if-present
-    - run: npm run build --if-present
+    - run: npm --prefix ./client install ./client
+    - run: npm --prefix ./client run test ./client --if-present
+    - run: npm --prefix ./client run build ./client--if-present
