@@ -36,7 +36,7 @@ class Device extends Component {
     }
 }
 
-function mapStateToProps({}, { device, parentGateway }) {
+function mapStateToProps({loadingBar}, { device, parentGateway }) {
     return {
         device,
         parentGateway
