@@ -90,6 +90,9 @@ describe('UI unit Testing', function () {
       const store = createStore(reducer, middleware)
       ReactDOM.render(<Provider store={store}><NewGateway /></Provider>, container)
     })
+    const gatewayComponent = container.querySelector('.new-gateway')
+    ReactTestUtils.isDOMComponent(gatewayComponent)
+    expect(gatewayComponent).toBeInTheDocument()
   })
 
   it('<NewDevice> renders correctly', () => {
@@ -97,5 +100,8 @@ describe('UI unit Testing', function () {
       const store = createStore(reducer, middleware)
       ReactDOM.render(<Provider store={store}><Router><NewDevice /></Router></Provider>, container)
     })
+    const deviceComponent = container.querySelector('.new-device')
+    ReactTestUtils.isDOMComponent(deviceComponent)
+    expect(deviceComponent).toBeInTheDocument()
   })
 })
