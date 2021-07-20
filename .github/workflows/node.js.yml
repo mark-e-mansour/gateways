@@ -1,32 +1,55 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Node.js Package
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  release:
+    types: [created]
 
 jobs:
   build:
-
-    runs-on: windows-latest
-
-    strategy:
-      matrix:
-        node-version: [7.x, 12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm i
-    - run: npm --prefix ./client install ./client
-    - run: npm --prefix ./client run test ./client --if-present
-    - run: npm --prefix ./client run build ./client--if-present
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm --prefix ./client ci ./client
+      - run: npm run test --if-present
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm --prefix ./client ci ./client
+      - run: npm --prefix ./client run build ./client
+      - run: npm --prefix ./client publish ./client
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm --prefix ./client ci ./client
+      - run: npm --prefix ./client run build ./client
+      - run: npm --prefix ./client publish ./client
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
